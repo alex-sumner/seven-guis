@@ -1,0 +1,18 @@
+{:source-paths
+ ["src"]
+
+ :dependencies [[refactor-nrepl "2.5.0"]
+                [cider/cider-nrepl "0.25.3"]
+                [reagent "0.10.0"]]
+
+ :nrepl        {:port 3333}
+
+ :builds {:site {:target :browser
+                 :output-dir "public/js"
+                 :asset-path "/js"
+
+                 :modules {:main {:init-fn site.core/init}}
+
+        :devtools
+        {:http-root   "public"
+         :http-port   3000}}}}

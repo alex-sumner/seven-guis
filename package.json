@@ -1,0 +1,27 @@
+{
+    "name": "SevenGUIs",
+    "version": "1.0.0",
+    "description": "Seven GUIs from https://eugenkiss.github.io/7guis/tasks",
+    "repository": "https://github.com/alex-sumner/seven-guis",
+    "scripts": {
+        "start": "shadow-cljs watch site",
+        "build": "shadow-cljs compile site",
+        "buildcss": "postcss css/tailwind.css -o public/css/tailwind.css",
+        "watchcss": "postcss css/tailwind.css -o public/css/tailwind.css --watch",
+        "release": "shadow-cljs release site",
+        "server": "shadow-cljs server",
+        "clean": "rm -rf target && rm -rf public/js"
+    },
+    "dependencies": {
+        "@tailwindcss/ui": "^0.5.0",
+        "@tailwindui/react": "^0.1.1",
+        "autoprefixer": "^9.8.6",
+        "postcss-cli": "^7.1.2",
+        "react": "^16.12.0",
+        "react-dom": "^16.12.0",
+        "tailwindcss": "^1.8.2"
+    },
+    "devDependencies": {
+        "shadow-cljs": "2.11.4"
+    }
+}

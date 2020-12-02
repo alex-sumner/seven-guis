@@ -1,0 +1,9 @@
+**/*~
+**\#*\#
+build/
+dist/
+package-lock.json                                                                                                                
+node_modules/
+public/js/cljs-runtime
+public/js/manifest.edn
+.shadow-cljs/                                                                                                                    
