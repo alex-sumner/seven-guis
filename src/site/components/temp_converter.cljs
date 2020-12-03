@@ -24,12 +24,14 @@
 
 (defn converter
   []
-  [:div {:class "p-8 flex items-center"}
-   [:div {:class "relative sm:flex sm:items-center"}
-    [:div {:class "mt-1 mr-4 sm:relative rounded-md shadow-sm"}
-     [:input {:id "celsius" :class "form-input w-full sm:text-sm sm:leading-5" :value @state/celcius :on-change #(change-temp % :celcius)}]]
-    [:label {:for "celsius" :class "mr-4 text-sm font-medium leading-5 text-gray-700"} "Celsius ="]]
-   [:div {:class "relative sm:flex sm:items-center"}
-    [:div {:class "mt-1 mr-4 sm:relative rounded-md shadow-sm"}
-         [:input {:id "farenheit" :class "form-input w-full sm:text-sm sm:leading-5" :value @state/farenheit :on-change  #(change-temp % :farenheit)}]]
-    [:label {:for "farenheit" :class "text-sm font-medium leading-5 text-gray-700"} "Farenheit"]]])
+  [:<>
+   [:div {:class "text-xl pt-8 pl-8"} "Task 2: Temperature Converter"]
+   [:div {:class "p-8 flex items-center"}
+    [:div {:class "relative sm:flex sm:items-center"}
+     [:div {:class "mt-1 mr-4 sm:relative rounded-md shadow-sm"}
+      [:input {:id "celsius" :class "form-input w-full sm:text-sm sm:leading-5" :value @state/celcius :on-change #(change-temp % :celcius)}]]
+     [:label {:for "celsius" :class "mr-4 text-sm font-medium leading-5 text-gray-700"} "Celsius ="]]
+    [:div {:class "relative sm:flex sm:items-center"}
+     [:div {:class "mt-1 mr-4 sm:relative rounded-md shadow-sm"}
+      [:input {:id "farenheit" :class "form-input w-full sm:text-sm sm:leading-5" :value @state/farenheit :on-change  #(change-temp % :farenheit)}]]
+     [:label {:for "farenheit" :class "text-sm font-medium leading-5 text-gray-700"} "Farenheit"]]]])

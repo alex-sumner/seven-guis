@@ -4,6 +4,7 @@
 (defn counter
   []
   [:div {:class "p-8"}
+   [:div {:class "text-xl pb-8"} "Task 1: Counter"]
    [:span {:class "inline-flex items-center px-2.5 py-1.5 mr-4 rounded-md text-sm font-medium leading-5 bg-indigo-100 text-indigo-800"}
     @state/counter]
    
