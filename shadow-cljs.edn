@@ -3,7 +3,8 @@
 
  :dependencies [[refactor-nrepl "2.5.0"]
                 [cider/cider-nrepl "0.25.3"]
-                [reagent "0.10.0"]]
+                [reagent "0.10.0"]
+                [tick "0.4.27-alpha"]]
 
  :nrepl        {:port 3333}
 

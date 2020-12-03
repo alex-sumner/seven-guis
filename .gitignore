@@ -6,4 +6,5 @@ package-lock.json
 node_modules/
 public/js/cljs-runtime
 public/js/manifest.edn
-.shadow-cljs/                                                                                                                    
+.shadow-cljs/
+tailwind-full.config.js     
