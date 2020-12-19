@@ -29,6 +29,5 @@
       [:div "Elapsed Time: " (str @elapsed)]
       [:div {:class "overflow-hidden h-2 mb-4 text-xs flex rounded bg-pink-200"}
        [:div {:style {:width (percent-done-string @elapsed)} :class "shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-pink-500"}]]]
-     [:button {:type "button" :class "px-2.5 py-1.5 border border-transparent text-xs leading-4 font-medium rounded text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150 inline-flex rounded-md shadow-sm disabled:opacity-50 disabled:textOpacity-50" :on-click #(reset! elapsed 0)} "Reset Timer"]
-     ]
+     [:button {:type "button" :class "px-2.5 py-1.5 border border-transparent text-xs leading-4 font-medium rounded text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150 inline-flex rounded-md shadow-sm disabled:opacity-50 disabled:textOpacity-50" :on-click #(reset! elapsed 0)} "Reset Timer"]]
     (finally (js/clearInterval timer-fn))))
