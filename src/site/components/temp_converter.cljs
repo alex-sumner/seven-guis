@@ -25,8 +25,8 @@
 (defn converter
   []
   [:<>
-   [:div {:class "text-xl pt-8 pl-8"} "Task 2: Temperature Converter"]
-   [:div {:class "p-8 flex items-center"}
+   [:div {:class "text-xl pt-8 pl-2 sm:pl-8"} "Task 2: Temperature Converter"]
+   [:div {:class "py-8 px-2 sm:p-8 flex items-center"}
     [:div {:class "relative sm:flex sm:items-center"}
      [:div {:class "mt-1 mr-4 sm:relative rounded-md shadow-sm"}
       [:input {:id "celsius" :class "form-input w-full sm:text-sm sm:leading-5" :value @state/celcius :on-change #(change-temp % :celcius)}]]

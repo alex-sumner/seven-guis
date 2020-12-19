@@ -15,3 +15,10 @@
 (def return-disabled (r/atom true))
 (def book-disabled (r/atom true))
 (def booking-modal-showing (r/atom false))
+
+;;task 4 timer
+(def interval (r/atom 30))
+
+;;task 5 crud
+(def name-filter (r/atom ""))
+(def first-name (r/atom ""))
