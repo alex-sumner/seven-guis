@@ -5,7 +5,7 @@
             [site.components.flight-booker :refer [booker]]
 	    [site.components.temp-converter :refer [converter]]
             [site.components.timer :refer [timer]]
-            ))
+            [site.components.crud :refer [crud]]))
 
 (defn app
   []
@@ -14,8 +14,7 @@
    [counter]
    [converter]
    [booker]
-   [timer]
-   ])
+   [timer]])
 
 (defn ^:dev/after-load start []
   (r/render [app] (.getElementById js/document "app")))

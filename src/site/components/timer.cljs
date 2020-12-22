@@ -22,8 +22,8 @@
   (r/with-let [elapsed (r/atom 0)
                timer-fn  (js/setInterval #(increment-counter elapsed) 1000)]
     [:div {:class "py-8 pl-2 sm:p-8"}
-     [:div {:class "text-xl pb-8"} "Task 4: Timer"]
-     [:div {:class "relative pt-1 max-w-md sm:max-w-lg"}
+     [:div {:class "text-xl pb-6"} "Task 4: Timer"]
+     [:div {:class "pt-1 max-w-md sm:max-w-lg"}
       [:div {:class "pb-4"}
        [:input {:class "bg-indigo-600 hover:bg-indigo-500 focus:outline-none active:bg-indigo-700 w-full" :type "range" :min 1 :max 120 :defaultValue 25 :onInput #(slider-moved %)}]]
       [:div "Elapsed Time: " (str @elapsed)]
