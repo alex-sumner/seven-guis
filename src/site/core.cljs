@@ -4,8 +4,7 @@
 	    [site.components.counter :refer [counter]]
             [site.components.flight-booker :refer [booker]]
 	    [site.components.temp-converter :refer [converter]]
-            [site.components.timer :refer [timer]]
-            [site.components.crud :refer [crud]]))
+            [site.components.timer :refer [timer]]))
 
 (defn app
   []
