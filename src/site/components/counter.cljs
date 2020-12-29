@@ -3,8 +3,8 @@
 
 (defn counter
   []
-  [:div {:class "py-8 pl-2 sm:p-8"}
-   [:div {:class "text-xl pb-8"} "Task 1: Counter"]
+  [:div {:class "mt-10 pb-8 px-2 sm:pl-8 sm:self-start"}
+   [:div {:class "text-xl pb-4"} "Task 1: Counter"]
    [:span {:class "px-2.5 py-1.5 mr-4 rounded-md text-sm font-medium leading-5 bg-white text-indigo-800"}
     @state/counter]
    

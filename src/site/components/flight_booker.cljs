@@ -89,8 +89,8 @@
                          :leaveTo "opacity-0"}
     [:div {:class "absolute inset-0 bg-gray-500 opacity-75"}]]
    ;;This element is to trick the browser into centering the modal contents.
-   [:span {:class "hidden sm:inline-block sm:align-middle sm:h-screen", :aria-hidden "true"} "​"]
-   [:> Transition.Child {:class "inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6"
+   [:span {:class "hidden sm:inline-block align-middle sm:h-screen", :aria-hidden "true"} "​"]
+   [:> Transition.Child {:class "inline-block align-center bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 align-middle sm:max-w-sm sm:w-full sm:p-6"
                          :role "dialog"
                          :aria-modal "true"
                          :aria-labelledby "modal-headline"
@@ -114,29 +114,25 @@
      [:button {:type "button" :on-click #(toggle-modal false) :class "inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"} "Go back to main page"]]]])
 
 (defn booker
-    []
-    [:div {:class "ml-2 sm:ml-8 mt-6 sm:mt-5"}
-     [:div {:class "text-xl"} "Task 3: Flight Booker"]
-     [:div {:class "mt-6 sm:mt-5 sm:grid sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"}
-      [:label {:for "journey_type" :class "block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2"} "One Way or Return"]
-      [:div {:class "mt-1 sm:mt-0 sm:col-span-3 md:col-span-4 lg:col-span-6"}
-       [:div {:class "max-w-lg rounded-md shadow-sm sm:max-w-xs"}
-        [:select {:id "journey_type" :class "block form-select w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" :value @state/journey-type :on-change #(journey-type-changed %)}
-         [:option "One Way"]
-         [:option "Return"]]]]]
-     [:div {:class "mt-1 sm:grid sm:mt-0 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"}
-      [:label {:for "departure_time" :class "block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2"} "Departure Time"]
-      [:div {:class "mt-1 sm:mt-0 sm:col-span-3  md:col-span-4 lg:col-span-6"}
-       [:div {:class "max-w-lg rounded-md shadow-sm sm:max-w-xs"}
-        [:input {:id "departure_time" :type "datetime-local" :value @state/departure :on-change #(departure-changed %) :class "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"}]]]]
-     [:div {:class "mt-1 sm:mt-0 sm:grid sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"}
-      [:label {:for "return_time" :class (str "block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2" (when @state/return-disabled " opacity-50"))} "Return Time"]
-      [:div {:class "mt-1 sm:mt-0 sm:col-span-3  md:col-span-4 lg:col-span-6"}
-       [:div {:class "max-w-lg rounded-md shadow-sm sm:max-w-xs"}
-        [:input {:id "return_time" :type "datetime-local" :value @state/return :on-change #(return-changed %) :disabled @state/return-disabled :class "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 disabled:opacity-50 disabled:bg-gray-300"}]]]]
-     [:div {:class "mt-1 sm:mt-0 sm:grid sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"}
-      [:div]
-      [:div {:class "mt-1 sm:mt-0 sm:col-span-3  md:col-span-4 lg:col-span-6 "} 
-       [:button {:type "button" :class "px-2.5 py-1.5 border border-transparent text-xs leading-4 font-medium rounded text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150 inline-flex rounded-md shadow-sm disabled:opacity-50 disabled:textOpacity-50" :on-click #(toggle-modal true) :disabled @state/book-disabled} "Book Flights"]]]
-     [modal]])
-
+  []
+  [:div {:class "mx-2 sm:ml-8 mt-10 sm:self-start"}
+   [:div {:class "text-xl pb-4"} "Task 3: Flight Booker"]
+   [:div {:class "sm:grid sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200"}
+    [:label {:for "journey_type" :class "text-right text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2"} "Journey Type"]
+    [:div {:class "mt-1 sm:mt-0 sm:col-span-2 md:col-span-3 lg:col-span-2"}
+     [:div {:class "max-w-lg rounded-md shadow-sm sm:max-w-xs"}
+      [:select {:id "journey_type" :class "form-select w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" :value @state/journey-type :on-change journey-type-changed}
+       [:option "One Way"]
+       [:option "Return"]]]]
+    [:label {:for "departure_time" :class "text-right text-sm font-medium leading-5 text-gray-700 mt-2 sm:mt-px sm:pt-2"} "Departure Time"]
+    [:div {:class "mt-1 sm:mt-0 sm:col-span-2  md:col-span-3 lg:col-span-2"}
+     [:div {:class "max-w-lg rounded-md shadow-sm sm:max-w-xs"}
+      [:input {:id "departure_time" :type "datetime-local" :value @state/departure :on-change departure-changed :class "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"}]]]
+    [:label {:for "return_time" :class (str "text-right text-sm font-medium leading-5 text-gray-700 mt-2 sm:mt-px sm:pt-2" (when @state/return-disabled " opacity-50"))} "Return Time"]
+    [:div {:class "mt-1 mb-4 sm:my-0 sm:col-span-2  md:col-span-3 lg:col-span-2"}
+     [:div {:class "max-w-lg rounded-md shadow-sm sm:max-w-xs"}
+      [:input {:id "return_time" :type "datetime-local" :value @state/return :on-change return-changed :disabled @state/return-disabled :class "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 disabled:opacity-50 disabled:bg-gray-300"}]]]
+    [:div]
+    [:div {:class "mt-1 sm:mt-0 sm:col-span-2  md:col-span-3 lg:col-span-2"} 
+     [:button {:type "button" :class "px-2.5 py-1.5 border border-transparent text-xs leading-4 font-medium rounded text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150 inline-flex rounded-md shadow-sm disabled:opacity-50 disabled:textOpacity-50" :on-click #(toggle-modal true) :disabled @state/book-disabled} "Book Flights"]]]
+   [modal]])

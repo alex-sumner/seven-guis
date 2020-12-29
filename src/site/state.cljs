@@ -22,3 +22,12 @@
 ;;task 5 crud
 (def name-filter (r/atom ""))
 (def first-name (r/atom ""))
+(def surname (r/atom ""))
+(def create-disabled (r/atom false))
+(def update-disabled (r/atom true))
+(def delete-disabled (r/atom true))
+(def names (r/atom [{:first-name "Hans" :surname "Emil"}
+                    {:first-name "Max" :surname "Mustermann"}
+                    {:first-name "Roman" :surname "Tisch"}]))
+(def list-selection (r/atom ""))
+(def list-node (r/atom nil))
