@@ -13,7 +13,7 @@
   [event]
   (let [new-filter (.. event -target -value)]
     (reset! state/name-filter new-filter))
-  (js/setTimeout update-btns-enabled))
+  (js/setTimeout update-btns-enabled 30))
 
 (defn first-name-changed
   [event]
@@ -57,7 +57,7 @@
           new-surname @state/surname
           new-map {:first-name new-first-name :surname new-surname}]
       (swap! state/names #(conj % new-map))
-      (js/setTimeout update-btns-enabled)))
+      (js/setTimeout update-btns-enabled 30)))
 
 (defn on-update
   []
@@ -66,7 +66,7 @@
           new-surname @state/surname
           new-map {:first-name new-first-name :surname new-surname}]
       (swap! state/names #(assoc % selected-index new-map))
-      (js/setTimeout update-btns-enabled))))
+      (js/setTimeout update-btns-enabled 30))))
 
 (defn on-delete
   []
@@ -74,7 +74,7 @@
     (let [target (parse-name n)
           new-names (filterv #(not= % target) @state/names)]
       (reset! state/names new-names))
-    (js/setTimeout update-btns-enabled)))
+    (js/setTimeout update-btns-enabled 30)))
 
 (defn get-prefix
   []
