@@ -29,5 +29,4 @@
 (def names (r/atom [{:first-name "Hans" :surname "Emil"}
                     {:first-name "Max" :surname "Mustermann"}
                     {:first-name "Roman" :surname "Tisch"}]))
-(def list-selection (r/atom ""))
 (def list-node (r/atom nil))

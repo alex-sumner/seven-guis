@@ -7,8 +7,7 @@
   []
   (let [no-selection (= -1 (.-selectedIndex @state/list-node))]
     (reset! state/update-disabled no-selection)
-    (reset! state/delete-disabled no-selection)
-    (if no-selection (reset! state/list-selection nil))))
+    (reset! state/delete-disabled no-selection)))
 
 (defn filter-changed
   [event]
@@ -26,29 +25,24 @@
   (let [new-surname (.. event -target -value)]
     (reset! state/surname new-surname)))
 
+(defn list-selection-changed
+  [_]
+  (update-btns-enabled))
+
 (defn parse-name
   [name-str]
   (let [[surname first-name] (st/split name-str #"," 2)]
     {:surname surname :first-name (st/triml first-name)}))
 
-(defn list-selection-changed
-  [event]
-  (let [new-selection (.. event -target -value)]
-    (reset! state/list-selection new-selection)
-    (update-btns-enabled)))
-
-(defn on-create
+(defn selected-person
   []
-  ;; (let [current-selection @state/list-selection
-  ;;       new-entry ()](swap! state/names ))
-  (.log js/console (str "list-selection: " @state/list-selection))
-  (.log js/console (str "selected index: " (.-selectedIndex @state/list-node)))
-  (.log js/console (str "selected options: " (.-selectedOptions @state/list-node)))
-  (.log js/console (str "length of selected options: ") (.-length (.-selectedOptions @state/list-node))))
+  (when-let [selected-items (.-selectedOptions @state/list-node)]
+    (when-let [selected-item (.item selected-items 0)]
+      (.-value  selected-item))))
 
 (defn index-of-currently-selected-name
   []
-  (when-let [n @state/list-selection]
+  (when-let [n (selected-person)]
     (let [target (parse-name n)]
       (reduce-kv
        (fn [_ k v]
@@ -57,26 +51,30 @@
        nil
        @state/names))))
 
+(defn on-create
+  []
+  (let [new-first-name @state/first-name
+          new-surname @state/surname
+          new-map {:first-name new-first-name :surname new-surname}]
+      (swap! state/names #(conj % new-map))
+      (js/setTimeout update-btns-enabled)))
+
 (defn on-update
   []
   (when-let [selected-index (index-of-currently-selected-name)]
     (let [new-first-name @state/first-name
           new-surname @state/surname
-          new-map {:first-name new-first-name :surname new-surname}
-          new-string (str new-surname ", " new-first-name)]
+          new-map {:first-name new-first-name :surname new-surname}]
       (swap! state/names #(assoc % selected-index new-map))
-      (reset! state/list-selection new-string)
-      (.log js/console (str "set list selection to " new-string)))))
+      (js/setTimeout update-btns-enabled))))
 
 (defn on-delete
   []
-  ;; find current entry
-  ;; delete it
-  (.log js/console "delete"))
-
-(defn crud-button
-  [{:keys [caption handler disabled]}]
-  ^{:key caption}[:button {:type "button" :class "my-4 mx-2 px-2.5 py-1.5 border border-transparent text-xs leading-4 font-medium rounded text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150 inline-flex rounded-md shadow-sm disabled:opacity-50 disabled:textOpacity-50" :on-click handler :disabled @disabled} caption])
+  (when-let [n (selected-person)]
+    (let [target (parse-name n)
+          new-names (filterv #(not= % target) @state/names)]
+      (reset! state/names new-names))
+    (js/setTimeout update-btns-enabled)))
 
 (defn get-prefix
   []
@@ -97,10 +95,14 @@
   [index desc]
   ^{:key index}[:option desc])
 
+(defn crud-button
+  [{:keys [caption handler disabled]}]
+  ^{:key caption}[:button {:type "button" :class "my-4 mx-2 px-2.5 py-1.5 border border-transparent text-xs leading-4 font-medium rounded text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150 inline-flex rounded-md shadow-sm disabled:opacity-50 disabled:textOpacity-50" :on-click handler :disabled @disabled} caption])
+
 (defn crud
   []
   [:div {:class "mx-2 sm:ml-8 mt-10"}
-   [:div {:class "text-xl pb-4"} "Task 5: CRUD"]
+   [:div {:class "text-xl pb-4"} "Task 5: CrUD"]
    [:div {:class "sm:grid sm:grid-cols-2"}
     [:div {:class "sm:flex my-2 sm:mb-4"}
      [:label {:for "filter" :class "text-right min-w-40 text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:py-2 sm:mr-4"} "Filter prefix"]
