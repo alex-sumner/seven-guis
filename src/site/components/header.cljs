@@ -10,4 +10,5 @@
         [:path {:stroke-width "7.75" :stroke "#3f48cc" :fill "none" :d "M365.063 169.125s-4.875 0-8.25 1.5-5.063 5.25-5.625 6.188c-.563.937.375 0 .375 0"}]
         [:path {:stroke-width "7.182" :stroke "#3f48cc" :fill "none" :d "M331.043 261.355s7.841.866 13.243 2.426 16.965 5.907 14.464 5.025c-19.39-6.835-5.315-1.906-5.315-1.906"}]
         [:path {:fill-rule "evenodd" :fill "#88001b" :d "M57.806 52.193a12.463 9.546 0 010 .045H45.343z"}]]]
-   [:div {:class "text-center text-3xl"} "Seven GUI Tasks"]])
+   [:div {:class "text-center text-3xl"} "Seven GUI Tasks"]
+   [:div {:class "text-center"} "(see " [:a {:href "https://eugenkiss.github.io/7guis/"} "https://eugenkiss.github.io/7guis/"] ")"]])
